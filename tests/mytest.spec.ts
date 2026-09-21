@@ -16,7 +16,7 @@ test(" Verify page title", async ({ page }) => {
   let title: string = await page.title();
   console.log(title);
 
-  await expect(page).toHaveURL(/demo.openemr.io/);
+  await expect(page).toHaveTitle('OpenEMR Login');
 
 
 
