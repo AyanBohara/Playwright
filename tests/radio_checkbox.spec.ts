@@ -45,8 +45,40 @@ test("Radio and checkbox testing", async ({ page }) => {
 
     await expect(message).toBeVisible();
 
+});
 
-    //Checkbox
+//for Checkbox
+test.only('Checkbox testing', async ({ page }) => {
+
+    page.goto('https://practice.rcvacademy.com/checkboxes');
+    await page.getByRole('checkbox', { name: '   Option One' }).check();
+    await page.getByRole('checkbox', { name: '  Option Two (pre-checked)' }).uncheck();
+
+
+    await page.getByRole('checkbox', { name: 'Select All' }).check();
+    const selects = page.locator('.lang-check');
+
+    for (const selectone of await selects.all()) {
+
+        await selectone.check();
+
+    }
+
+    await page.getByRole('checkbox', { name: 'Can Write' }).check();
+    await page.getByRole('checkbox', { name: 'Can Delete' }).check();
+    await page.getByRole('checkbox', { name: 'Can Read' }).uncheck();
+
+    //Subscribe to topics
+    const subscrive = page.locator('.topic-check');
+
+    for (const subone of await subscrive.all()) {
+        await subone.check();
+    }
+    await page.getByRole('button', { name: 'Subscribe' }).click();
+
+
+    await expect(page.getByRole('checkbox', { name: "Admin Access" })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Subscribe' })).toBeEnabled();
 
 
 });
