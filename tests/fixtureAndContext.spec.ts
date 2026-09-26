@@ -19,13 +19,18 @@ test.only('Handling multiple windows', async ({ browser }) => {
     const [newPage] = await Promise.all([
         //need to listen if new tab is opening while clicking on page
         context.waitForEvent("page"), //pening ,fulfiiled or rejected
-        await page.locator("//div[@id='sponsor-tier-platinum']").click()
-
+        // await page.locator("#social-yt-rcv").click(),
+        await page.getByRole('link', {
+            name: 'RCV Academy eLearning — Platinum Sponsor'
+        }).click(),
+        await page.waitForTimeout(5000)
     ])
 
-    await newPage.locator("//div[@data-component='button']").click();
+    // const button = await newPage.locator("//div[@data-component='button']");
+
     await page.waitForTimeout(5000);
-    await newPage.getByRole('link', { name: 'Sign In' }).click();
+    await newPage.getByRole('link', { name: "Sign In" }).click();
+
     await page.waitForTimeout(5000);
     await newPage.getByPlaceholder('Email Address').fill('Ayan');
     await page.waitForTimeout(5000);
