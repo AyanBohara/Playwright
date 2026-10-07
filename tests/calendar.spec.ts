@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 test('Testing the calendar and date and time', async ({ page }) => {
-    page.goto('https://practice.rcvacademy.com/calendar');
+    await page.goto('https://practice.rcvacademy.com/calendar');
     await page.locator("//*[@id='native-date']").fill('2026-05-15');
 
     // await page.pause();
