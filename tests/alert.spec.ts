@@ -22,4 +22,23 @@ test('Handling the alerrt', async ({ page }) => {
     console.log('🔥 TEST FINISHED');
     await page.locator('#trigger-alert-btn').click();
 
+
+
+    page.on('dialog', async dialog1 => {
+        await dialog1.accept();
+        console.log(dialog1.message());
+
+    })
+    page.locator('#trigger-custom-alert').click();
+
+
+    page.on('dialog', async dialog2 => {
+
+        console.log('K bhanna esle' + dialog2.defaultValue()); //returns the text already filled in the prompt box:
+
+        await dialog2.accept();
+
+
+    })
+    await page.locator('#trigger-delayed-alert').click()
 })
