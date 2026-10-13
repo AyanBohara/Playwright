@@ -44,13 +44,16 @@ test('Click an element below the viewport', async ({ page }) => {
     await expect(goldSponsor).toBeVisible();
 });
 
-//Testing Vertical Sponsors
+//Testing Vertical Scrollbars
 test.only('Testing table inside having vertical scrollbar', async ({ page }) => {
     await page.goto('https://practice.rcvacademy.com/scrollbars');
 
-    const lastelement = page.getByRole('link', { name: 'Gold Sponsor 7' });
+    const lastelement = page.locator('#scroll-para-20');
 
     lastelement.evaluate(element => {
-        element.scrollTop = element.scrollHeight;
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        })
     })
 })
