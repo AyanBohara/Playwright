@@ -72,7 +72,7 @@ test('Testing vertical scrollbar using scrollintoviewneeded', async ({ page }) =
 })
 
 //Testing by evaluate using locator box
-test.only('Testing using verticalvar evaluate', async ({ page }) => {
+test('Testing using verticalvar evaluate', async ({ page }) => {
     await page.goto('https://practice.rcvacademy.com/scrollbars');
     const seconlast = page.locator('#vertical-scroll-box');
 
@@ -84,5 +84,37 @@ test.only('Testing using verticalvar evaluate', async ({ page }) => {
         // When you set scrollTop equal to scrollHeight, you tell the browser to move the box to the bottom.
 
 
+    })
+})
+
+//Testing horizontal
+test('Horixontal Scrolling', async ({ page }) => {
+    await page.goto('https://practice.rcvacademy.com/scrollbars');
+    const lasthori = page.locator('//*[@id="cell-4-12"]');
+    lasthori.scrollIntoViewIfNeeded()
+})
+
+test('Testing horizontal using evaluate', async ({ page }) => {
+    await page.goto('https://practice.rcvacademy.com/scrollbars');
+    const lasthori = page.locator('//*[@id="cell-4-12"]');
+    await lasthori.evaluate(element => {
+        element.scrollIntoView({
+
+            behavior: 'smooth',
+
+        })
+    })
+    await page.waitForTimeout(5000);
+})
+
+//testing the lazy loading
+test.only('testing lazy loading', async ({ page }) => {
+    await page.goto('https://practice.rcvacademy.com/scrollbars');
+    const lazy = page.locator('//*[@id="lazy-scroll-container"]/p[25]');
+    await lazy.evaluate(element => {
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        })
     })
 })
