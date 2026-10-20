@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import path from 'node:path';
+
 
 const multiLoginUrl = 'https://practice.rcvacademy.com/multi-login';
 
