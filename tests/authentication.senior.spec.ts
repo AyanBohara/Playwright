@@ -14,9 +14,9 @@ class RegistrationPage {
 
   async open() {
     await this.page.goto('https://practice.rcvacademy.com/store/register');
-    await expect(
-      this.page.getByRole('heading', { name: /register|create account/i })
-    ).toBeVisible();
+    // The first required field is a stable readiness check for this form.
+    // It avoids depending on optional heading text or page styling.
+    await expect(this.page.getByLabel('First Name')).toBeVisible();
   }
 
   async submit() {
