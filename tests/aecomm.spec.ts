@@ -23,5 +23,9 @@ await page.locator('#reg-submit-btn').click();
 test.only('Testing the login page', async({page})=>{
 await page.goto('https://practice.rcvacademy.com/store');
 await page.getByRole('link',{name:'Login'}).click();
+await page.locator('#login-email').fill('zayan@gmail.com');
+await page.getByPlaceholder('Enter your password').fill('123456789');
+await page.locator('//*[@id="login-remember"]').click();
+await page.getByTestId('login-submit-btn').click();
 
 })
