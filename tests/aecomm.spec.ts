@@ -20,12 +20,47 @@ await page.locator('#reg-submit-btn').click();
 
 });
 
-test.only('Testing the login page', async({page})=>{
+test('Testing the login page', async({page})=>{
 await page.goto('https://practice.rcvacademy.com/store');
 await page.getByRole('link',{name:'Login'}).click();
 await page.locator('#login-email').fill('zayan@gmail.com');
 await page.getByPlaceholder('Enter your password').fill('123456789');
 await page.locator('//*[@id="login-remember"]').click();
 await page.getByTestId('login-submit-btn').click();
+
+})
+
+test.only('Testing the addto cart and favourite item', async({page})=>{
+await page.goto('https://practice.rcvacademy.com/store');
+await page.goto('https://practice.rcvacademy.com/store');
+await page.getByRole('link',{name:'Login'}).click();
+await page.locator('#login-email').fill('zayan@gmail.com');
+await page.getByPlaceholder('Enter your password').fill('123456789');
+await page.locator('//*[@id="login-remember"]').click();
+await page.getByTestId('login-submit-btn').click();
+    await page.locator('//*[@id="add-to-cart-12"]').click();
+    await page.waitForTimeout(2000);
+    await page.locator('//*[@id="pagination-page-6"]').click()
+    await page.waitForTimeout(2000);
+    await page.locator('//*[@id="add-to-cart-65"]').click();
+    await page.waitForTimeout(2000);
+
+    await page.getByRole('link',{name:'Cart'}).click();
+    await page.waitForTimeout(2000);
+
+    await page.locator('//*[@id="cart-qty-12"]').fill('3');
+await page.locator('//*[@id="cart-remove-65"]').click();
+await page.getByPlaceholder('Promo code').fill('Zyan');
+
+    await page.waitForTimeout(2000);
+    await expect(page.locator('//*[@id="cart-name-12"]/a')).toHaveText('ProMax Smartphone X12 Pro Max');
+await page.locator('//*[@id="continue-shopping"]').click();
+await page.locator('//*[@id="add-to-cart-2"]').click();
+await page.waitForTimeout(2000);
+
+    await page.getByRole('link',{name:'Cart'}).click();
+    await page.waitForTimeout(2000);
+    await page.locator('//*[@id="proceed-to-checkout-btn"]').click();
+    await page.waitForTimeout(2000);
 
 })
