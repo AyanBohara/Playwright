@@ -63,4 +63,25 @@ await page.waitForTimeout(2000);
     await page.locator('//*[@id="proceed-to-checkout-btn"]').click();
     await page.waitForTimeout(2000);
 
+    //Shipping
+    await page.locator('//*[@id="ship-address1"]').pressSequentially('Sanobharyang');
+    await page.locator('#ship-address2').pressSequentially('Sanobharyang');
+await page.waitForTimeout(1000);
+    
+    await page.locator('//*[@id="ship-city"]').fill('Kathmandu');
+await page.waitForTimeout(1000);
+    await page.locator('//*[@id="ship-state"]').fill('Nagarjun');
+await page.waitForTimeout(1000);
+    await page.locator('//*[@id="ship-zip"]').fill('444');
+await page.waitForTimeout(1000);
+
+    await page.locator('//*[@id="ship-country"]').selectOption({value:'IN'});
+await page.getByRole('radio',{name:'Express Shipping'}).click();
+await page.locator('#pay-paypal-label').click();
+await page.waitForTimeout(1000);
+
+await page.locator('//*[@id="order-notes"]').fill('Thank u for delivery');
+await page.waitForTimeout(2000);
+
+
 })
