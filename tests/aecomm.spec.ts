@@ -32,7 +32,6 @@ await page.getByTestId('login-submit-btn').click();
 
 test.only('Testing the addto cart and favourite item', async({page})=>{
 await page.goto('https://practice.rcvacademy.com/store');
-await page.goto('https://practice.rcvacademy.com/store');
 await page.getByRole('link',{name:'Login'}).click();
 await page.locator('#login-email').fill('zayan@gmail.com');
 await page.getByPlaceholder('Enter your password').fill('123456789');
@@ -60,8 +59,17 @@ await page.waitForTimeout(2000);
 
     await page.getByRole('link',{name:'Cart'}).click();
     await page.waitForTimeout(2000);
-    await page.locator('//*[@id="proceed-to-checkout-btn"]').click();
+  
+
+    //handling popup
+page.on('dialog', async dialog=>{
+    await dialog.accept();
+})
+await page.locator('//*[@id="clear-cart-btn"]').click();
+  await page.locator('//*[@id="proceed-to-checkout-btn"]').click();
     await page.waitForTimeout(2000);
+    await page.locator('//*[@id="add-to-cart-65"]').click();
+
 
     //Shipping
     await page.locator('//*[@id="ship-address1"]').pressSequentially('Sanobharyang');
@@ -81,6 +89,12 @@ await page.locator('#pay-paypal-label').click();
 await page.waitForTimeout(1000);
 
 await page.locator('//*[@id="order-notes"]').fill('Thank u for delivery');
+await page.waitForTimeout(2000);
+
+
+
+
+await page.locator('#place-order-btn').click();
 await page.waitForTimeout(2000);
 
 
