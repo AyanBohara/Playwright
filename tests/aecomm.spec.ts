@@ -65,23 +65,22 @@ await page.waitForTimeout(2000);
 page.on('dialog', async dialog=>{
     await dialog.accept();
 })
-await page.locator('//*[@id="clear-cart-btn"]').click();
+// await page.locator('//*[@id="clear-cart-btn"]').click();
   await page.locator('//*[@id="proceed-to-checkout-btn"]').click();
     await page.waitForTimeout(2000);
-    await page.locator('//*[@id="add-to-cart-65"]').click();
 
 
     //Shipping
     await page.locator('//*[@id="ship-address1"]').pressSequentially('Sanobharyang');
     await page.locator('#ship-address2').pressSequentially('Sanobharyang');
-await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
     
     await page.locator('//*[@id="ship-city"]').fill('Kathmandu');
-await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
     await page.locator('//*[@id="ship-state"]').fill('Nagarjun');
-await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
     await page.locator('//*[@id="ship-zip"]').fill('444');
-await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000);
 
     await page.locator('//*[@id="ship-country"]').selectOption({value:'IN'});
 await page.getByRole('radio',{name:'Express Shipping'}).click();
@@ -96,6 +95,18 @@ await page.waitForTimeout(2000);
 
 await page.locator('#place-order-btn').click();
 await page.waitForTimeout(2000);
+// await page.locator('//*[@id="continue-shopping-empty"]').click();
+// await page.locator('//*[@id="add-to-cart-2"]').click();
 
+await page.waitForTimeout(2000);
+
+await page.locator('//*[@id="view-orders-btn"]').click();
+await page.locator('//*[@id="view-order-RCVMVTQUYH8"]').click();
+await expect(page.locator('//*[@id="order-detail-heading"]')).toBeVisible();
+page.on('dialog', async dialog=>{
+    await dialog.accept();
+})
+// await page.getByRole('button',{name:'Cancel Order'}).click();
+await page.locator('//*[@id="store-nav-orders"]').click();
 
 })
