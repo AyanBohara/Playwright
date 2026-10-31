@@ -89,7 +89,9 @@ await page.waitForTimeout(1000);
 
 await page.locator('//*[@id="order-notes"]').fill('Thank u for delivery');
 await page.waitForTimeout(2000);
-
+await page.locator("//span[normalize-space()='User_Manual_v2.1.pdf']").dblclick();
+    await page.waitForTimeout(5000);
+    await page.locator('//*[@id="page-content"]/div[2]/div[1]/h3/span/i').click({ button: "right" });
 
 
 
