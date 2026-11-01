@@ -46,5 +46,16 @@ await page.locator("//span[normalize-space()='User_Manual_v2.1.pdf']").dblclick(
     await page.locator('//*[@id="page-content"]/div[2]/div[1]/h3/span/i').click({ button: "right" });
 //this
 })
+await page.waitForTimeout(2000);
+
+    await page.locator('//*[@id="datetime-input"]').fill('2026-12-20T09:37');
+
+    //selecting the test and it opens the calendar and we can selet the date month year
+    await page.getByPlaceholder('MM/DD/YYYY').click();
+    await page.waitForTimeout(2000);
+
+    await page.locator('//*[@id="ui-datepicker-div"]/div/a[2]/span').click();
+    await page.waitForTimeout(2000);
+    await page.waitForTimeout(2000);
 
 });
